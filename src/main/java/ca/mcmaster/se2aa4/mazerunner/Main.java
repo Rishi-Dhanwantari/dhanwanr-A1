@@ -48,6 +48,9 @@ public class Main {
                 }
                 logger.trace(System.lineSeparator());
             }
+
+            Maze maze = new Maze(inputMazeFile);
+
         } catch(Exception e) {
             logger.error("/!\\ An error has occured /!\\");
         }
