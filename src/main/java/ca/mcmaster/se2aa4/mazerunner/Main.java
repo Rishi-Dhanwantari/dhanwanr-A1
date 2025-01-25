@@ -48,14 +48,22 @@ public class Main {
                 }
                 logger.trace(System.lineSeparator());
             }
-
-            Maze maze = new Maze(inputMazeFile);
-
         } catch(Exception e) {
             logger.error("/!\\ An error has occured /!\\");
+            logger.info("**** Computing path");
+            logger.info("PATH NOT COMPUTED");
+            logger.info("** End of MazeRunner");
         }
+        Maze maze = new Maze(inputMazeFile);
+        int[] exitPoint = maze.getExitPoint();
+        Runner runner = new Runner(maze.getEntryPoint());
+
+        while (runner.getRunnerPosition()[1] != exitPoint[1]){
+            runner.moveForward();
+        }
+        
         logger.info("**** Computing path");
-        logger.info("PATH NOT COMPUTED");
+        logger.info("PATH: "+runner.getPath());
         logger.info("** End of MazeRunner");
     }
 }
