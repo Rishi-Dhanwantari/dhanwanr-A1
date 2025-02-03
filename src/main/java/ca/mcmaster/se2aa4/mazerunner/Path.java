@@ -3,7 +3,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 class Path {
     private String path;
 
-    public Path(int[] entryPosition){
+    public Path(){
         this.path = "";
     }
 

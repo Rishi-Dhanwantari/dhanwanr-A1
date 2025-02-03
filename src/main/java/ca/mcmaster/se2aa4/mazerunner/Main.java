@@ -55,15 +55,12 @@ public class Main {
             logger.info("** End of MazeRunner");
         }
         Maze maze = new Maze(inputMazeFile);
-        int[] exitPoint = maze.getExitPoint();
-        Runner runner = new Runner(maze.getEntryPoint());
+        Runner runner = new Runner(maze.getEntryPoint(), Direction.EAST);
 
-        while (runner.getRunnerPosition()[1] != exitPoint[1]){
-            runner.moveForward();
-        }
+        runner.traverseMaze(maze);
         
         logger.info("**** Computing path");
-        logger.info("PATH: "+runner.getPath());
+        logger.info("FACTORIZED PATH: "+runner.getPath().getFactorizedPath());
         logger.info("** End of MazeRunner");
     }
 }

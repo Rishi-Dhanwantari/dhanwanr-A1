@@ -32,6 +32,14 @@ class Maze {
         }
     }
 
+    public boolean isWall(int x, int y) {
+        return mazeArray[x][y] == '#';
+    }
+
+    public boolean isPass(int x, int y) {
+        return mazeArray[x][y] == ' ';
+    }
+
     public char[][] getMazeArray(){
         return this.mazeArray;
     }
