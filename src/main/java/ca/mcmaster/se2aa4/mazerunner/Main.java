@@ -16,6 +16,7 @@ public class Main {
 
         Options options = new Options();
         options.addOption("i", "input", true, "Input file containing the maze");
+        options.addOption("p", "path", true, "Path pattern to compare (canonical or factorized)");
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd;
@@ -28,6 +29,7 @@ public class Main {
         }
 
         String inputMazeFile = cmd.getOptionValue("input");
+        String userPath = cmd.getOptionValue("path");
 
         if (inputMazeFile == null) {
             logger.error("Please use the -i flag.");
@@ -54,13 +56,24 @@ public class Main {
             logger.info("PATH NOT COMPUTED");
             logger.info("** End of MazeRunner");
         }
+
         Maze maze = new Maze(inputMazeFile);
         Runner runner = new Runner(maze.getEntryPoint(), Direction.EAST);
 
         runner.traverseMaze(maze);
         
-        logger.info("**** Computing path");
-        logger.info("FACTORIZED PATH: "+runner.getPath().getFactorizedPath());
-        logger.info("** End of MazeRunner");
+        if (userPath == null) {
+            logger.info("**** Computing path");
+            logger.info("FACTORIZED PATH WEST TO EAST: "+runner.getPath().getFactorizedPath());
+            logger.info("** End of MazeRunner");
+
+        } else{
+            if (runner.getPath().getCanonicalPath().equals(userPath) || runner.getPath().getFactorizedPath().equals(userPath)){
+                logger.info(userPath+" is a valid path for this maze.");
+
+            } else{
+                logger.info(userPath+" is not a valid path for this maze.");
+            }
+        }
     }
 }
