@@ -40,15 +40,11 @@ class Maze {
         return mazeArray[x][y] == ' ';
     }
 
-    public char[][] getMazeArray(){
-        return this.mazeArray;
-    }
-
     public int[] getEntryPoint(){
-        return this.entryPoint;
+        return new int[]{this.entryPoint[0], this.entryPoint[1]};
     }
 
     public int[] getExitPoint(){
-        return this.exitPoint;
+        return new int[]{this.exitPoint[0], this.exitPoint[1]};
     }
 }

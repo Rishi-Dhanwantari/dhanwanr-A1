@@ -12,7 +12,7 @@ class Path {
     }
 
     public String getCanonicalPath(){
-        return this.path;
+        return new String(this.path);
     }
 
     public String getFactorizedPath(){

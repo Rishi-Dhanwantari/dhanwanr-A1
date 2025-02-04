@@ -48,11 +48,9 @@ class Runner {
         this.path.addMovement("L");
     }
 
-    public int[] getRunnerPosition(){
-        return this.runnerPosition;
-    }
-
     public Path getPath(){
-        return this.path;
+        Path copy = new Path();
+        copy.addMovement(this.path.getCanonicalPath());
+        return copy;
     }
 }
