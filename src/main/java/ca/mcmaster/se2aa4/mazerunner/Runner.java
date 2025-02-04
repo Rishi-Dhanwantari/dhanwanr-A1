@@ -1,16 +1,22 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+/**
+ * Runner class to represent the Maze Runner and traverse through the maze.
+ */
+
 class Runner {
     private int[] runnerPosition;
     private Direction runnerDirection;
     private Path path;
 
+    //constructor method for Runner.
     public Runner(int[] entryPosition, Direction startingDirection){
         this.runnerPosition = entryPosition;
         this.runnerDirection = startingDirection;
         this.path = new Path();
     }
 
+    //method that traverses the maze by following the right wall until the exit.
     public void traverseMaze(Maze maze){
         int[] exitPoint = maze.getExitPoint();
 
@@ -31,6 +37,7 @@ class Runner {
         }
     }
 
+    //method that moves the Runner one position forward, whichever direction they are facing.
     private void moveForward(){
         int[] currentDirection = runnerDirection.getCurrentDirection();
         this.runnerPosition[0] += currentDirection[0];
@@ -38,16 +45,19 @@ class Runner {
         this.path.addMovement("F");
     }
 
+    //method that adjusts the Runner's direction by turning it right once.
     private void runnerTurnRight(){
         this.runnerDirection = this.runnerDirection.turnRight();
         this.path.addMovement("R");
     }
 
+    //method that adjusts the Runner's direction by turning it left once.
     private void runnerTurnLeft(){
         this.runnerDirection = this.runnerDirection.turnLeft();
         this.path.addMovement("L");
     }
 
+    //accessor method for the Runner's path.
     public Path getPath(){
         Path copy = new Path();
         copy.addMovement(this.path.getCanonicalPath());
